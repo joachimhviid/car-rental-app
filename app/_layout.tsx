@@ -1,21 +1,27 @@
 import { Slot } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { StyleSheet, ImageBackground, View } from 'react-native'
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function App() {
+  const insets = useSafeAreaInsets()
   return (
-    <SafeAreaView style={styles.container}>
-      <Slot />
+    <View style={{ flex: 1 }}>
+      <ImageBackground
+        style={{ ...styles.container, paddingTop: insets.top }}
+        source={require('../assets/car-bg-image.webp')}
+      >
+        <Slot />
+      </ImageBackground>
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#3D4044',
     padding: 16,
-    height: '100%'
+    flex: 1,
+    justifyContent: 'center',
   },
 })
